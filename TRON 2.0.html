@@ -515,7 +515,7 @@
             X1            = w - X2 - margin
             Y1            = c.height-h-margin*3
             x.lineWidth   = 10
-            x.font        = (40) + 'px Courier Prime'
+            x.font        = (40) + 'px monospace'
             x.textAlign   = 'center'
             x.strokeRect(X1, 20 + Y1, X2, Y2)
             x.fillStyle   = `#000`
@@ -525,7 +525,7 @@
             x.fillText(str, X1 + X2/2, Y1 + 50)
             
             x.textAlign = 'left'
-            x.font = fs + 'px Courier Prime'
+            x.font = fs + 'px monospace'
             x.fillStyle = '#0FF'
             x.strokeStyle = '#40F4'
             x.strokeText('LEADERBOARD', margin*2, c.height-margin*2-(players.length+1)*fs+fs/25)
@@ -568,7 +568,7 @@
             X1            = c.width - w - X2 - margin*3
             Y1            = c.height-Y2-margin*6
             x.lineWidth   = 10
-            x.font        = (40) + 'px Courier Prime'
+            x.font        = (40) + 'px monospace'
             x.textAlign   = 'center'
             x.strokeRect(X1, 20 + Y1, X2, Y2)
             x.fillStyle   = `#000`
@@ -636,7 +636,7 @@
             X1            = c.width - X2/2 -28
             Y1            = c.height/2 - 18
             x.lineWidth   = 10
-            x.font        = (20) + 'px Courier Prime'
+            x.font        = (20) + 'px monospace'
             x.textAlign   = 'center'
             x.strokeRect(X1, Y1, X2, Y2)
             x.fillStyle   = '#000'
@@ -1063,7 +1063,7 @@
                 if(!idx && !player.alive){
                   x.fillStyle = '#18000688'
                   x.fillRect(0,0,c.width,c.height)
-                  x.font = (fs = 100) + 'px Courier Prime'
+                  x.font = (fs = 100) + 'px monospace'
                   x.fillStyle = '#f02'
                   x.strokeStyle = '#000'
                   x.lineWidth = 16
@@ -1370,7 +1370,7 @@
         X2            = 120
         Y2            = 50
         x.lineWidth   = 10
-        x.font        = (40) + 'px Courier Prime'
+        x.font        = (40) + 'px monospace'
         x.textAlign   = 'center'
         for(m=3; m--; ){
           lx = 875 * (m-1)
@@ -1419,7 +1419,7 @@
           x.textAlign = 'center'
           x.fillRect(0,0,c.width,c.height)
           x.fillStyle = '#fff8'
-          x.font = (fs=100)+'px Courier Prime'
+          x.font = (fs=100)+'px monospace'
           x.strokeStyle = '#000a'
           x.lineWidth = 10
           x.strokeText(flashNotices[l][0],c.width/2, c.height/2+fs/4)
@@ -1434,7 +1434,7 @@
         X1            = -X2/2
         Y1            = c.height - Y2 - 10
         x.lineWidth   = 10
-        x.font        = (40) + 'px Courier Prime'
+        x.font        = (40) + 'px monospace'
         x.textAlign   = 'center'
         x.strokeRect(960 + X1, Y1, X2, Y2)
         x.fillStyle   = paused ? '#601' : '#021'
