@@ -105,94 +105,12 @@
           Q3p = () => [X/Z*1200*tscl2/1.33, Y/Z*1200*tscl2/1.33]
           Q4 = () => [c.width-155+X/Z*33.975, c.height-155+Y/Z*33.975]
           I=(A,B,M,D,E,F,G,H)=>(K=((G-E)*(B-F)-(H-F)*(A-E))/(J=(H-F)*(M-A)-(G-E)*(D-B)))>=0&&K<1&&(L=((M-A)*(B-F)-(D-B)*(A-E))/J)>=0&&L<1?[A+K*(M-A),B+K*(D-B)]:0
-          
-          async function loadOBJ(url, scale, tx, ty, tz, rl, pt, yw, recenter=true) {
-            let res
-            await fetch(url, res => res).then(data=>data.text()).then(data=>{
-              a=[]
-              data.split("\nv ").map(v=>{
-                a=[...a, v.split("\n")[0]]
-              })
-              a=a.filter((v,i)=>i).map(v=>[...v.split(' ').map(n=>(+n.replace("\n", '')))])
-              ax=ay=az=0
-              a.map(v=>{
-                v[1]*=-1
-                if(recenter){
-                  ax+=v[0]
-                  ay+=v[1]
-                  az+=v[2]
-                }
-              })
-              ax/=a.length
-              ay/=a.length
-              az/=a.length
-              a.map(v=>{
-                X=(v[0]-ax)*scale
-                Y=(v[1]-ay)*scale
-                Z=(v[2]-az)*scale
-                R2(rl,pt,yw,0)
-                v[0]=X
-                v[1]=Y * (url.indexOf('bug')!=-1?2:1)
-                v[2]=Z
-              })
-              maxY=-6e6
-              a.map(v=>{
-                if(v[1]>maxY)maxY=v[1]
-              })
-              a.map(v=>{
-                v[1]-=maxY-oY
-                v[0]+=tx
-                v[1]+=ty
-                v[2]+=tz
-              })
-
-              b=[]
-              data.split("\nf ").map(v=>{
-                b=[...b, v.split("\n")[0]]
-              })
-              b.shift()
-              b=b.map(v=>v.split(' '))
-              b=b.map(v=>{
-                v=v.map(q=>{
-                  return +q.split('/')[0]
-                })
-                v=v.filter(q=>q)
-                return v
-              })
-
-              res=[]
-              b.map(v=>{
-                e=[]
-                v.map(q=>{
-                  e=[...e, a[q-1]]
-                })
-                e = e.filter(q=>q)
-                res=[...res, e]
-              })
-            })
-            return res
-          }
-
-          reflect = (a, n) => {
-            let d1 = Math.hypot(...a)+.0001
-            let d2 = Math.hypot(...n)+.0001
-            a[0]/=d1
-            a[1]/=d1
-            a[2]/=d1
-            n[0]/=d2
-            n[1]/=d2
-            n[2]/=d2
-            let dot = -a[0]*n[0] + -a[1]*n[1] + -a[2]*n[2]
-            let rx = -a[0] - 2 * n[0] * dot
-            let ry = -a[1] - 2 * n[1] * dot
-            let rz = -a[2] - 2 * n[2] * dot
-            return [-rx*d1, -ry*d1, -rz*d1]
-          }
 
           Cube = size => {
             for(CB=[],j=6;j--;CB=[...CB,b])for(b=[],i=4;i--;)b=[...b,[(a=[S(p=Math.PI*2/4*i+Math.PI/4),C(p),2**.5/2])[j%3]*(l=j<3?size/2**.5:-size/2**.5),a[(j+1)%3]*l,a[(j+2)%3]*l]]
             return CB
           }
+          
           subbed = (subs, size, sphereize, shape) => {
             for(let m=subs; m--;){
               base = shape
@@ -625,10 +543,9 @@
             x.fillRect(c.width - w_, c.height - 316, w_*.9, -h_*d)
             w_ = 160 * s
             h_ = 664 * s
-            x.strokeStyle = '#fff'
+            x.strokeStyle = '#fff8'
             x.lineWidth = 4
-            x.strokeRect(c.width - w_, c.height - h_ - 305, w_, h_-10)
-            //x.drawImage(throttle, c.width - w_, c.height - h_ - 310, w_, h_)
+            x.strokeRect(c.width - w_+4, c.height - h_ - 305, w_-8, h_-10)
             
             x.strokeStyle = `#fff4`
             X2            = 40
@@ -1127,7 +1044,7 @@
                       if(Z>0) x.lineTo(...l)
                     })
                     col1 = ''
-                    col2 = (idx + (idx/br|0)%4) % 4 ? '#ff000010' : '#ffffff10'
+                    col2 = (idx + (idx/br|0)%4) % 4 ? '#4400ff20' : '#00ff8820'
                     oga = 1 / (1+Math.hypot(tx - players[camSelected].X, tz - players[camSelected].Z)**8/1e10)
                     stroke(col1, col2, 4, false, oga)
                   })
@@ -1157,8 +1074,8 @@
                         if(view == 1 && !m) l[0] = Math.max(c.width/2, l[0])
                         if(Z>0) x.lineTo(...l)
                       })
-                      col1 = view !== 2 && !m ? '#804' : ''
-                      col2 = '#804'
+                      col1 = view !== 2 && !m ? '#888' : ''
+                      col2 = '#888'
                       stroke(col1, col2, 4, false, oga)
                     })
                   }
@@ -1443,7 +1360,6 @@
         x.fillStyle   = `#fff`
         x.fillText(str, 960, Y1 + 33)
 
-        
         t+=1/60
         requestAnimationFrame(Draw)
       }
