@@ -11,4 +11,4 @@ Maintain a superior score against the clever AI drivers. Use speed and reflexes 
   * 'L' toggles leaderboard visibility
   * 'O' toggles map & speedometer visibility
 
-### online version [TRON 2.0](https://srmcgann.github.io/tron2.0)
+### online version [TRON 2.0](https://srmcgann.github.io/TRON2.0)
